@@ -2,8 +2,8 @@
 
 A Recipe Ingredients List App
 
-Features React, SASS, Bootstrap, CSS Flexbox, localstorage, marked, mocha, chai,
-enzyme & sinon.
+Features React, SASS, Bootstrap, CSS Flexbox, localstorage, mocha, chai, enzyme
+& sinon.
 
 [View Demo](https://ibleedfilm.github.io/recipe-box).
 

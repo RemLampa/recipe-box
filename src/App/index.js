@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import RecipeList from 'components/RecipeList';
 
 import './app.scss';
-import './app.css';
 
-export default class App extends Component {
-  render() {
-    return <h1 className='text-primary text-center'>Hello World!</h1>;
-  }
-}
+const App = () => (
+  <div>
+    <RecipeList />
+  </div>
+);
+
+export default App;

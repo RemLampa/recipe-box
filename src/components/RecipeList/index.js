@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Style from './style.scss';
+
 export default class RecipeList extends Component {
   constructor(props) {
     super(props);
@@ -44,11 +46,13 @@ export default class RecipeList extends Component {
 
   render() {
     return (
-      <div>
+      <div id='recipe-list'>
         <ul>
           <li>Test</li>
         </ul>
-        <button>Create Recipe</button>
+        <button type='button' className='btn btn-primary btn-lg btn-block'>
+          Create Recipe
+        </button>
       </div>
     );
   }

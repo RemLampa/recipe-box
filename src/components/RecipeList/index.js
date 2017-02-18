@@ -19,6 +19,11 @@ export default class RecipeList extends Component {
     };
   }
 
+  addRecipe(recipe) {
+    const recipes = [ ...this.state.recipes, recipe ];
+    this.setState({ recipes });
+  }
+
   render() {
     return (
       <div>

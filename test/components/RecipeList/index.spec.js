@@ -1,18 +1,10 @@
 import RecipeList from 'components/RecipeList';
 
 describe('<RecipeList />', () => {
-  let wrapper;
+  let wrapper, instance, initialState;
 
   beforeEach(() => {
-    wrapper = shallow(<RecipeList />);
-  });
-
-  it('should be a div', () => {
-    expect(wrapper).to.have.type('div');
-  });
-
-  it('should have proper initial state', () => {
-    const initialState = {
+    initialState = {
       recipes: [
         {
           name: 'Sample Recipe',
@@ -26,7 +18,37 @@ describe('<RecipeList />', () => {
       ]
     };
 
+    wrapper = shallow(<RecipeList />);
+    instance = wrapper.instance();
+  });
+
+  it('should be a div', () => {
+    expect(wrapper).to.have.type('div');
+  });
+
+  it('should have proper initial state', () => {
     expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
+  });
+
+  it('should have method addRecipe() that adds new recipe to this.state.recipes', () => {
+    const recipe = {
+      name: 'Test recipe',
+      description: 'This is a test recipe',
+      ingredients: [
+        'pizza',
+        'spaghetti',
+        'drinks'
+      ]
+    };
+
+    initialState.recipes.push(recipe);
+    instance.addRecipe(recipe);
+
+    expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
+  });
+
+  it('should have a button that calls method addRecipe()', () => {
+
   });
 
   it('should contain a ul', () => {

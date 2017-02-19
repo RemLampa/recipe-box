@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const Recipe = ({recipe}) => (
-  <li>
-    
-  </li>
+  <li>{recipe.name}</li>
 );
 
 Recipe.propTypes = {

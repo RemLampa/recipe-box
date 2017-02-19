@@ -169,6 +169,9 @@ describe('<RecipeList />', () => {
     expect(modalSubject).to.have.prop('isHidden', initialState.recipeModal.isHidden);
     expect(modalSubject).to.have.prop('recipe', initialState.recipeModal.selectedRecipe);
     expect(modalSubject).to.have.prop('mode', initialState.recipeModal.mode);
+    expect(modalSubject).to.have.prop('onCreate', instance.createRecipe);
+    expect(modalSubject).to.have.prop('onUpdate', instance.updateRecipe);
+    expect(modalSubject).to.have.prop('onDelete', instance.deleteRecipe);
   });
 
   it('should contain a button', () => {

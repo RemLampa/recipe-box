@@ -75,6 +75,9 @@ export default class RecipeList extends Component {
           isHidden={recipeModal.isHidden}
           recipe={recipeModal.selectedRecipe}
           mode={recipeModal.mode}
+          onCreate={this.createRecipe}
+          onUpdate={this.updateRecipe}
+          onDelete={this.deleteRecipe}
         />
         <ul>
           <li>Test</li>

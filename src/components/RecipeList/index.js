@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import RecipeModal from 'components/RecipeModal';
+
 import Style from './style.scss';
 
 export default class RecipeList extends Component {
@@ -45,12 +47,22 @@ export default class RecipeList extends Component {
   }
 
   render() {
+    const { recipes, recipeModal } = this.state;
+
     return (
       <div id='recipe-list'>
+        <RecipeModal
+          isHidden={recipeModal.isHidden}
+          recipe={recipeModal.selectedRecipe}
+        />
         <ul>
           <li>Test</li>
         </ul>
-        <button type='button' className='btn btn-primary btn-lg btn-block'>
+        <button
+          type='button'
+          className='btn btn-primary btn-lg btn-block'
+          onClick={this.showModal}
+        >
           Create Recipe
         </button>
       </div>

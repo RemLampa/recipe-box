@@ -1,5 +1,7 @@
 import RecipeList from 'components/RecipeList';
 
+import RecipeModal from 'components/RecipeModal';
+
 describe('<RecipeList />', () => {
   let wrapper, instance, initialState;
 
@@ -100,6 +102,15 @@ describe('<RecipeList />', () => {
 
   it('should contain a ul', () => {
     expect(wrapper).to.have.exactly(1).descendants('ul');
+  });
+
+  it('should contain a <RecipeModal /> with correct props', () => {
+    expect(wrapper).to.have.exactly(1).descendants(RecipeModal);
+
+    const modalSubject = wrapper.find(RecipeModal).first();
+
+    expect(modalSubject).to.have.prop('isHidden', initialState.recipeModal.isHidden);
+    expect(modalSubject).to.have.prop('recipe', initialState.recipeModal.selectedRecipe);
   });
 
   it('should contain a button', () => {

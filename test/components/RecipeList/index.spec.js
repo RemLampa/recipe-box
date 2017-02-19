@@ -3,7 +3,7 @@ import RecipeList from 'components/RecipeList';
 import RecipeModal from 'components/RecipeModal';
 
 describe('<RecipeList />', () => {
-  let wrapper, instance, initialState, newState;
+  let wrapper, instance, initialState, newState, showModal;
 
   beforeEach(() => {
     initialState = {
@@ -51,6 +51,16 @@ describe('<RecipeList />', () => {
 
     wrapper = shallow(<RecipeList />);
     instance = wrapper.instance();
+
+    showModal = () => {
+      const recipeModal = {
+        isHidden: false,
+        selectedRecipe: newState.recipes[1],
+        mode: 'read'
+      };
+
+      instance.setState({ recipeModal });
+    }
   });
 
   it('should be a div', () => {
@@ -73,10 +83,12 @@ describe('<RecipeList />', () => {
       ]
     };
 
+    showModal();
     initialState.recipes.push(recipe);
     instance.createRecipe(recipe);
 
     expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
+    expect(wrapper).to.have.state('recipeModal').deep.equal(initialState.recipeModal);
   });
 
   it('should have a method updateRecipe() that updates recipes state', () => {
@@ -90,6 +102,8 @@ describe('<RecipeList />', () => {
       ]
     };
 
+    showModal();
+
     instance.setState({ recipes: [...newState.recipes] });
 
     newState.recipes[1] = newRecipe;
@@ -97,9 +111,12 @@ describe('<RecipeList />', () => {
     instance.updateRecipe(1, newRecipe);
 
     expect(wrapper).to.have.state('recipes').deep.equal(newState.recipes);
+    expect(wrapper).to.have.state('recipeModal').deep.equal(initialState.recipeModal);
   });
 
   it('should have a method deleteRecipe() that updates recipes state', () => {
+    showModal();
+
     instance.setState({ recipes: [...newState.recipes] });
 
     newState.recipes.splice(1,1);
@@ -107,6 +124,7 @@ describe('<RecipeList />', () => {
     instance.deleteRecipe(1);
 
     expect(wrapper).to.have.state('recipes').deep.equal(newState.recipes);
+    expect(wrapper).to.have.state('recipeModal').deep.equal(initialState.recipeModal);
   });
 
   it('should have method showModal() that sets recipeModal state (incl. CRUD)', () => {
@@ -158,13 +176,7 @@ describe('<RecipeList />', () => {
   });
 
   it('should have method hideModal() the resets recipeModal state', () => {
-    const recipeModal = {
-      isHidden: false,
-      selectedRecipe: newState.recipes[1],
-      mode: 'read'
-    };
-
-    instance.setState({ recipeModal });
+    showModal();
 
     instance.hideModal();
 

@@ -36,7 +36,10 @@ export default class RecipeList extends Component {
 
   createRecipe(recipe) {
     const recipes = [ ...this.state.recipes, recipe ];
+
     this.setState({ recipes });
+
+    this.hideModal();
   }
 
   updateRecipe(recipeId, recipe) {
@@ -45,6 +48,8 @@ export default class RecipeList extends Component {
     recipes[recipeId] = recipe;
 
     this.setState({ recipes });
+
+    this.hideModal();
   }
 
   deleteRecipe(recipeId) {
@@ -53,6 +58,8 @@ export default class RecipeList extends Component {
     recipes.splice(recipeId, 1);
 
     this.setState({ recipes });
+
+    this.hideModal();
   }
 
   showModal(recipeId, mode) {

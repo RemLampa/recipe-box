@@ -13,11 +13,7 @@ export default class RecipeList extends Component {
         {
           name: 'Sample Recipe',
           description: 'This is a sample recipe',
-          ingredients: [
-            'tomato',
-            'salt',
-            'water'
-          ]
+          ingredients: 'tomato,salt,water'
         }
       ],
       recipeModal: {

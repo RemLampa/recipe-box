@@ -11,11 +11,7 @@ describe('<RecipeList />', () => {
         {
           name: 'Sample Recipe',
           description: 'This is a sample recipe',
-          ingredients: [
-            'tomato',
-            'salt',
-            'water'
-          ]
+          ingredients: 'tomato,salt,water'
         }
       ],
       recipeModal: {
@@ -31,20 +27,12 @@ describe('<RecipeList />', () => {
         {
           name: 'Test recipe',
           description: 'This is a test recipe',
-          ingredients: [
-            'pizza',
-            'spaghetti',
-            'drinks'
-          ]
+          ingredients: 'pizza,spaghetti,drinks'
         },
         {
           name: 'Test recipe2',
           description: 'This is a test recipe2',
-          ingredients: [
-            'pizzas',
-            'spaghettis',
-            'drinks'
-          ]
+          ingredients: 'pizzas,spaghettis,drinks'
         }
       ]
     };
@@ -77,11 +65,7 @@ describe('<RecipeList />', () => {
       const recipe = {
         name: 'Test recipe',
         description: 'This is a test recipe',
-        ingredients: [
-          'pizza',
-          'spaghetti',
-          'drinks'
-        ]
+        ingredients: 'pizza,spaghetti,drinks'
       };
 
       initialState.recipes.push(recipe);
@@ -95,11 +79,7 @@ describe('<RecipeList />', () => {
       const newRecipe = {
         name: 'Updated recipe',
         description: 'This is an updated recipe',
-        ingredients: [
-          'updated pizza',
-          'updated spaghetti',
-          'updated drinks'
-        ]
+        ingredients: 'updated pizza, updated spaghetti, updated drinks'
       };
 
       instance.setState({ recipes: [...newState.recipes] });

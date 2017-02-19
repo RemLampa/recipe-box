@@ -157,6 +157,20 @@ describe('<RecipeList />', () => {
     });
   });
 
+  it('should have method hideModal() the resets recipeModal state', () => {
+    const recipeModal = {
+      isHidden: false,
+      selectedRecipe: newState.recipes[1],
+      mode: 'read'
+    };
+
+    instance.setState({ recipeModal });
+
+    instance.hideModal();
+
+    expect(wrapper).to.have.state('recipeModal').deep.equal(initialState.recipeModal);
+  });
+
   it('should contain a ul', () => {
     expect(wrapper).to.have.exactly(1).descendants('ul');
   });

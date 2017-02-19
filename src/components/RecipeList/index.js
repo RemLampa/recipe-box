@@ -66,6 +66,16 @@ export default class RecipeList extends Component {
     this.setState({ recipeModal });
   }
 
+  hideModal() {
+    this.setState({
+      recipeModal: {
+        isHidden: true,
+        selectedRecipe: null,
+        mode: 'create'
+      }
+    });
+  }
+
   render() {
     const { recipes, recipeModal } = this.state;
 

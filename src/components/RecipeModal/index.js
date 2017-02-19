@@ -2,15 +2,22 @@ import React, { PropTypes } from 'react';
 
 import { Modal } from 'react-bootstrap';
 
-const RecipeModal = (props) => (
+import CreateModeModal from './CreateModeModal';
+import ReadModeModal from './ReadModeModal';
+import UpdateModeModal from './UpdateModeModal';
+import DeleteModeModal from './DeleteModeModal';
+
+const RecipeModal = props => (
   <Modal
     show={!props.isHidden}
     bsSize='lg'
     backdrop='static'
+    onHide={props.onHide}
   >
-    <Modal.Body>
-      Test
-    </Modal.Body>
+    { props.mode === 'create' && <CreateModeModal /> }
+    { props.mode === 'read' && <ReadModeModal /> }
+    { props.mode === 'update' && <UpdateModeModal /> }
+    { props.mode === 'delete' && <DeleteModeModal /> }
   </Modal>
 );
 

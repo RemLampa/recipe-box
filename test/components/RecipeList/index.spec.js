@@ -62,7 +62,7 @@ describe('<RecipeList />', () => {
     expect(wrapper).to.have.state('recipeModal').deep.equal(initialState.recipeModal);
   });
 
-  it('should have method addRecipe() that adds new recipe to recipes state', () => {
+  it('should have method createRecipe() that adds new recipe to recipes state', () => {
     const recipe = {
       name: 'Test recipe',
       description: 'This is a test recipe',
@@ -74,7 +74,7 @@ describe('<RecipeList />', () => {
     };
 
     initialState.recipes.push(recipe);
-    instance.addRecipe(recipe);
+    instance.createRecipe(recipe);
 
     expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
   });

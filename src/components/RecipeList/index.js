@@ -27,11 +27,12 @@ export default class RecipeList extends Component {
       }
     };
 
-    this.addRecipe = this.addRecipe.bind(this);
+    this.addRecipe = this.createRecipe.bind(this);
+    this.updateRecipe = this.updateRecipe.bind(this);
     this.showModal = this.showModal.bind(this);
   }
 
-  addRecipe(recipe) {
+  createRecipe(recipe) {
     const recipes = [ ...this.state.recipes, recipe ];
     this.setState({ recipes });
   }

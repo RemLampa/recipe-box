@@ -20,7 +20,8 @@ describe('<RecipeList />', () => {
       ],
       recipeModal: {
         isHidden: true,
-        selectedRecipe: null
+        selectedRecipe: null,
+        mode: 'create'
       }
     };
 
@@ -54,7 +55,7 @@ describe('<RecipeList />', () => {
     expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
   });
 
-  it('should have a method showModal() that properly sets recipeModal state', () => {
+  it('should have method showModal() that sets recipeModal state (incl. CRUD)', () => {
     const newState = {
       recipes: [
         ...initialState.recipes,
@@ -81,21 +82,47 @@ describe('<RecipeList />', () => {
 
     wrapper.setState({ recipes: newState.recipes });
 
-    instance.showModal();
+    instance.showModal(null, 'create');
 
     expect(wrapper).to.have.state('recipeModal').deep.equal({
       isHidden: false,
-      selectedRecipe: null
+      selectedRecipe: null,
+      mode: 'create'
     });
 
     [0, 1, 2].map(id => {
       wrapper.setState({ recipeModal: initialState.recipeModal });
 
-      instance.showModal(id);
+      instance.showModal(id, 'read');
 
       expect(wrapper).to.have.state('recipeModal').deep.equal({
         isHidden: false,
-        selectedRecipe: newState.recipes[id]
+        selectedRecipe: newState.recipes[id],
+        mode: 'read'
+      });
+    });
+
+    [0, 1, 2].map(id => {
+      wrapper.setState({ recipeModal: initialState.recipeModal });
+
+      instance.showModal(id, 'update');
+
+      expect(wrapper).to.have.state('recipeModal').deep.equal({
+        isHidden: false,
+        selectedRecipe: newState.recipes[id],
+        mode: 'update'
+      });
+    });
+
+    [0, 1, 2].map(id => {
+      wrapper.setState({ recipeModal: initialState.recipeModal });
+
+      instance.showModal(id, 'delete');
+
+      expect(wrapper).to.have.state('recipeModal').deep.equal({
+        isHidden: false,
+        selectedRecipe: newState.recipes[id],
+        mode: 'delete'
       });
     });
   });
@@ -111,6 +138,7 @@ describe('<RecipeList />', () => {
 
     expect(modalSubject).to.have.prop('isHidden', initialState.recipeModal.isHidden);
     expect(modalSubject).to.have.prop('recipe', initialState.recipeModal.selectedRecipe);
+    expect(modalSubject).to.have.prop('mode', initialState.recipeModal.mode);
   });
 
   it('should contain a button', () => {

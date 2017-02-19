@@ -22,7 +22,8 @@ export default class RecipeList extends Component {
       ],
       recipeModal: {
         isHidden: true,
-        selectedRecipe: null
+        selectedRecipe: null,
+        mode: 'create'
       }
     };
 
@@ -35,12 +36,13 @@ export default class RecipeList extends Component {
     this.setState({ recipes });
   }
 
-  showModal(recipeId) {
+  showModal(recipeId, mode) {
     const recipeModal = {
       isHidden: false,
       selectedRecipe: recipeId || recipeId === 0 ?
         this.state.recipes[recipeId] :
-        null
+        null,
+      mode: mode
     };
 
     this.setState({ recipeModal });
@@ -54,6 +56,7 @@ export default class RecipeList extends Component {
         <RecipeModal
           isHidden={recipeModal.isHidden}
           recipe={recipeModal.selectedRecipe}
+          mode={recipeModal.mode}
         />
         <ul>
           <li>Test</li>
@@ -61,7 +64,7 @@ export default class RecipeList extends Component {
         <button
           type='button'
           className='btn btn-primary btn-lg btn-block'
-          onClick={this.showModal}
+          onClick={() => this.showModal(null,'create')}
         >
           Create Recipe
         </button>

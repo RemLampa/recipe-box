@@ -3,7 +3,7 @@ import RecipeList from 'components/RecipeList';
 import RecipeModal from 'components/RecipeModal';
 
 describe('<RecipeList />', () => {
-  let wrapper, instance, initialState;
+  let wrapper, instance, initialState, newState;
 
   beforeEach(() => {
     initialState = {
@@ -23,6 +23,30 @@ describe('<RecipeList />', () => {
         selectedRecipe: null,
         mode: 'create'
       }
+    };
+
+    newState = {
+      recipes: [
+        ...initialState.recipes,
+        {
+          name: 'Test recipe',
+          description: 'This is a test recipe',
+          ingredients: [
+            'pizza',
+            'spaghetti',
+            'drinks'
+          ]
+        },
+        {
+          name: 'Test recipe2',
+          description: 'This is a test recipe2',
+          ingredients: [
+            'pizzas',
+            'spaghettis',
+            'drinks'
+          ]
+        }
+      ]
     };
 
     wrapper = shallow(<RecipeList />);
@@ -55,31 +79,27 @@ describe('<RecipeList />', () => {
     expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
   });
 
-  it('should have method showModal() that sets recipeModal state (incl. CRUD)', () => {
-    const newState = {
-      recipes: [
-        ...initialState.recipes,
-        {
-          name: 'Test recipe',
-          description: 'This is a test recipe',
-          ingredients: [
-            'pizza',
-            'spaghetti',
-            'drinks'
-          ]
-        },
-        {
-          name: 'Test recipe2',
-          description: 'This is a test recipe2',
-          ingredients: [
-            'pizzas',
-            'spaghettis',
-            'drinks'
-          ]
-        }
+  it('should have a method updateRecipe() that updates recipes state', () => {
+    const recipes = [ ...newState.recipes ];
+    const newRecipe = {
+      name: 'Updated recipe',
+      description: 'This is an updated recipe',
+      ingredients: [
+        'updated pizza',
+        'updated spaghetti',
+        'updated drinks'
       ]
     };
 
+    recipes[1] = newRecipe;
+
+    instance.setState({ recipes: newState.recipes });
+    instance.updateRecipe(1, newRecipe);
+
+    expect(wrapper).to.have.state('recipes').deep.equal(recipes);
+  });
+
+  it('should have method showModal() that sets recipeModal state (incl. CRUD)', () => {
     wrapper.setState({ recipes: newState.recipes });
 
     instance.showModal(null, 'create');

@@ -36,6 +36,14 @@ export default class RecipeList extends Component {
     this.setState({ recipes });
   }
 
+  updateRecipe(recipeId, recipe) {
+    const recipes = [ ...this.state.recipes ];
+
+    recipes[recipeId] = recipe;
+
+    this.setState({ recipes });
+  }
+
   showModal(recipeId, mode) {
     const recipeModal = {
       isHidden: false,

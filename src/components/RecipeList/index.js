@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import RecipeModal from 'components/RecipeModal';
+import Recipe from 'components/Recipe';
 
 import Style from './style.scss';
 
@@ -23,7 +24,7 @@ export default class RecipeList extends Component {
       }
     };
 
-    this.addRecipe = this.createRecipe.bind(this);
+    this.createRecipe = this.createRecipe.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -95,7 +96,7 @@ export default class RecipeList extends Component {
           onHide={this.hideModal}
         />
         <ul>
-          <li>Test</li>
+          { this.state.recipes.map(recipe => <Recipe recipe={recipe} />) }
         </ul>
         <button
           type='button'

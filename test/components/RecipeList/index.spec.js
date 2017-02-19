@@ -1,6 +1,7 @@
 import RecipeList from 'components/RecipeList';
 
 import RecipeModal from 'components/RecipeModal';
+import Recipe from 'components/Recipe';
 
 describe('<RecipeList />', () => {
   let wrapper, instance, initialState, newState, showModal;
@@ -168,10 +169,6 @@ describe('<RecipeList />', () => {
     });
   });
 
-  it('should contain a ul', () => {
-    expect(wrapper).to.have.exactly(1).descendants('ul');
-  });
-
   it('should contain a <RecipeModal /> with correct props', () => {
     expect(wrapper).to.have.exactly(1).descendants(RecipeModal);
 
@@ -184,6 +181,22 @@ describe('<RecipeList />', () => {
     expect(modalSubject).to.have.prop('onUpdate', instance.updateRecipe);
     expect(modalSubject).to.have.prop('onDelete', instance.deleteRecipe);
     expect(modalSubject).to.have.prop('onHide', instance.hideModal);
+  });
+
+  it('should contain a ul', () => {
+    expect(wrapper).to.have.exactly(1).descendants('ul');
+  });
+
+  it('should render a <Recipe /> for each recipe', () => {
+    instance.setState({ recipes: [...newState.recipes] });
+
+    expect(wrapper.find('ul')).to.have.exactly(3).descendants(Recipe);
+
+    const recipeWrapper = wrapper.find(Recipe);
+
+    [0,1,2].map(id => {
+      expect(recipeWrapper.at(id)).to.have.prop('recipe').deep.equal(newState.recipes[id]);
+    });
   });
 
   it('should contain a button', () => {

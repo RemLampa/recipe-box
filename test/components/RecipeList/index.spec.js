@@ -80,7 +80,6 @@ describe('<RecipeList />', () => {
   });
 
   it('should have a method updateRecipe() that updates recipes state', () => {
-    const recipes = [ ...newState.recipes ];
     const newRecipe = {
       name: 'Updated recipe',
       description: 'This is an updated recipe',
@@ -91,16 +90,27 @@ describe('<RecipeList />', () => {
       ]
     };
 
-    recipes[1] = newRecipe;
+    instance.setState({ recipes: [...newState.recipes] });
 
-    instance.setState({ recipes: newState.recipes });
+    newState.recipes[1] = newRecipe;
+
     instance.updateRecipe(1, newRecipe);
 
-    expect(wrapper).to.have.state('recipes').deep.equal(recipes);
+    expect(wrapper).to.have.state('recipes').deep.equal(newState.recipes);
+  });
+
+  it('should have a method deleteRecipe() that updates recipes state', () => {
+    instance.setState({ recipes: [...newState.recipes] });
+
+    newState.recipes.splice(1,1);
+
+    instance.deleteRecipe(1);
+
+    expect(wrapper).to.have.state('recipes').deep.equal(newState.recipes);
   });
 
   it('should have method showModal() that sets recipeModal state (incl. CRUD)', () => {
-    wrapper.setState({ recipes: newState.recipes });
+    wrapper.setState({ recipes: [...newState.recipes] });
 
     instance.showModal(null, 'create');
 

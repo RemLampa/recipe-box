@@ -29,6 +29,7 @@ export default class RecipeList extends Component {
 
     this.addRecipe = this.createRecipe.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
+    this.deleteRecipe = this.deleteRecipe.bind(this);
     this.showModal = this.showModal.bind(this);
   }
 
@@ -41,6 +42,14 @@ export default class RecipeList extends Component {
     const recipes = [ ...this.state.recipes ];
 
     recipes[recipeId] = recipe;
+
+    this.setState({ recipes });
+  }
+
+  deleteRecipe(recipeId) {
+    const recipes = [ ...this.state.recipes ];
+
+    recipes.splice(recipeId, 1);
 
     this.setState({ recipes });
   }

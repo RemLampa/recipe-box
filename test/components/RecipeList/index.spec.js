@@ -186,6 +186,7 @@ describe('<RecipeList />', () => {
     expect(modalSubject).to.have.prop('onCreate', instance.createRecipe);
     expect(modalSubject).to.have.prop('onUpdate', instance.updateRecipe);
     expect(modalSubject).to.have.prop('onDelete', instance.deleteRecipe);
+    expect(modalSubject).to.have.prop('onHide', instance.hideModal);
   });
 
   it('should contain a button', () => {

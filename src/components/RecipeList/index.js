@@ -31,6 +31,7 @@ export default class RecipeList extends Component {
     this.updateRecipe = this.updateRecipe.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   createRecipe(recipe) {
@@ -88,6 +89,7 @@ export default class RecipeList extends Component {
           onCreate={this.createRecipe}
           onUpdate={this.updateRecipe}
           onDelete={this.deleteRecipe}
+          onHide={this.hideModal}
         />
         <ul>
           <li>Test</li>

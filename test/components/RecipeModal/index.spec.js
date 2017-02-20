@@ -39,11 +39,14 @@ describe('<RecipeModal />', () => {
       buildWrapper(false, null, 'create');
     });
 
-    it('should ONLY contain <CreateModeModal />', () => {
+    it('should ONLY contain <CreateModeModal /> with required props', () => {
       expect(wrapper).to.have.exactly(1).descendants(CreateModeModal);
       expect(wrapper).to.not.have.descendants(ReadModeModal);
       expect(wrapper).to.not.have.descendants(UpdateModeModal);
       expect(wrapper).to.not.have.descendants(DeleteModeModal);
+
+      expect(wrapper.find(CreateModeModal)).to.have.prop('onCreate').equal(props.onCreate);
+      expect(wrapper.find(CreateModeModal)).to.have.prop('onCancel').equal(props.onHide);
     });
   });
 
@@ -52,7 +55,7 @@ describe('<RecipeModal />', () => {
       buildWrapper(false, null, 'read');
     });
 
-    it('should ONLY contain <ReadModeModal />', () => {
+    it('should ONLY contain <ReadModeModal /> with required props', () => {
       expect(wrapper).to.not.have.descendants(CreateModeModal);
       expect(wrapper).to.have.exactly(1).descendants(ReadModeModal);
       expect(wrapper).to.not.have.descendants(UpdateModeModal);

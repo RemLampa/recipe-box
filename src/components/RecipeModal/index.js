@@ -14,7 +14,10 @@ const RecipeModal = props => (
     backdrop='static'
     onHide={props.onHide}
   >
-    { props.mode === 'create' && <CreateModeModal /> }
+    { props.mode === 'create' && <CreateModeModal
+      onCreate={props.onCreate}
+      onCancel={props.onHide}
+      /> }
     { props.mode === 'read' && <ReadModeModal /> }
     { props.mode === 'update' && <UpdateModeModal /> }
     { props.mode === 'delete' && <DeleteModeModal /> }

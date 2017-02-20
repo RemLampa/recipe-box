@@ -96,7 +96,7 @@ export default class RecipeList extends Component {
           onHide={this.hideModal}
         />
         <ul>
-          { this.state.recipes.map((recipe,index) => <Recipe recipe={recipe} key={index} />) }
+          { this.state.recipes.map((recipe,index) => <Recipe recipeName={recipe.name} key={index} />) }
         </ul>
         <button
           type='button'

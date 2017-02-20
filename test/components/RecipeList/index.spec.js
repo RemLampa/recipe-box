@@ -195,7 +195,7 @@ describe('<RecipeList />', () => {
     const recipeWrapper = wrapper.find(Recipe);
 
     [0,1,2].map(id => {
-      expect(recipeWrapper.at(id)).to.have.prop('recipe').deep.equal(newState.recipes[id]);
+      expect(recipeWrapper.at(id)).to.have.prop('recipeName').equal(newState.recipes[id].name);
     });
   });
 

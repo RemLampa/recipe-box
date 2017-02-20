@@ -18,7 +18,7 @@ describe('<RecipeList />', () => {
       recipeModal: {
         isHidden: true,
         selectedRecipe: null,
-        mode: 'create'
+        mode: ''
       }
     };
 

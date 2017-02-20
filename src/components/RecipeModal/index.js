@@ -21,6 +21,11 @@ const RecipeModal = props => (
     { props.mode === 'read' && <ReadModeModal /> }
     { props.mode === 'update' && <UpdateModeModal /> }
     { props.mode === 'delete' && <DeleteModeModal /> }
+    { ['create', 'read', 'update', 'delete'].indexOf(props.mode) < 0 &&
+      <Modal.Body>
+        <noscript />
+      </Modal.Body>
+    }
   </Modal>
 );
 

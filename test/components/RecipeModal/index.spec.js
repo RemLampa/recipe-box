@@ -31,7 +31,21 @@ describe('<RecipeModal />', () => {
   it('should be a Bootstrap Modal with required attributes', () => {
     expect(wrapper).to.have.type(Modal);
 
-    expect(wrapper).to.have.prop('show', true);
+    expect(wrapper).to.have.prop('show').equal(true);
+    expect(wrapper).to.have.prop('onHide').equal(props.onHide);
+  });
+
+  context('Init Mode', () => {
+    beforeEach(() => {
+      buildWrapper(true, null, '');
+    });
+
+    it('should render blank Modal', () => {
+      expect(wrapper).to.not.have.descendants(CreateModeModal);
+      expect(wrapper).to.not.have.descendants(ReadModeModal);
+      expect(wrapper).to.not.have.descendants(UpdateModeModal);
+      expect(wrapper).to.not.have.descendants(DeleteModeModal);
+    });
   });
 
   context('Create Mode', () => {

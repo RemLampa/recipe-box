@@ -5,7 +5,9 @@ describe('<Recipe />', () => {
 
   beforeEach(() => {
     props = {
-      recipeName: 'test'
+      recipeName: 'test',
+      id: 2,
+      onClick: spy()
     };
 
     wrapper = shallow(<Recipe {...props} />);
@@ -17,5 +19,12 @@ describe('<Recipe />', () => {
 
   it('should display recipe name', () => {
     expect(wrapper.find('li')).to.have.text(props.recipeName);
+  });
+
+  it('should call props.onClick when clicked', () => {
+    wrapper.simulate('click');
+
+    expect(props.onClick).to.have.been.calledOnce;
+    expect(props.onClick).to.have.been.calledWith(props.id, 'read');
   });
 });

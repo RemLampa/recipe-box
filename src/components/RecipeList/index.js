@@ -20,7 +20,7 @@ export default class RecipeList extends Component {
       recipeModal: {
         isHidden: true,
         selectedRecipe: null,
-        mode: 'create'
+        mode: ''
       }
     };
 
@@ -75,7 +75,7 @@ export default class RecipeList extends Component {
     const recipeModal = {
       isHidden: true,
       selectedRecipe: null,
-      mode: 'create'
+      mode: ''
     };
 
     this.setState({ recipeModal });
@@ -96,7 +96,14 @@ export default class RecipeList extends Component {
           onHide={this.hideModal}
         />
         <ul>
-          { this.state.recipes.map((recipe,index) => <Recipe recipeName={recipe.name} key={index} />) }
+          {
+            this.state.recipes.map((recipe,index) => <Recipe
+              recipeName={recipe.name}
+              key={index}
+              id={index}
+              onClick={this.showModal}
+            />)
+          }
         </ul>
         <button
           type='button'

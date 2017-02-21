@@ -53,14 +53,16 @@ describe('<RecipeList />', () => {
   });
 
   describe('CRUD Methods', () => {
-    let hideModalSpy;
+    let hideModalSpy, showModalSpy;
 
     beforeEach(() => {
       hideModalSpy = spy(instance, 'hideModal');
+      showModalSpy = spy(instance, 'showModal');
     });
 
     afterEach(() => {
       hideModalSpy.restore();
+      showModalSpy.restore();
     });
 
     it('should have method createRecipe() that updates recipes state', () => {
@@ -74,7 +76,8 @@ describe('<RecipeList />', () => {
       instance.createRecipe(recipe);
 
       expect(wrapper).to.have.state('recipes').deep.equal(initialState.recipes);
-      expect(hideModalSpy).to.have.been.calledOnce;
+      expect(showModalSpy).to.have.been.calledOnce;
+      expect(showModalSpy).to.have.been.calledWith(1,'read');
     });
 
     it('should have method updateRecipe() that updates recipes state', () => {
@@ -91,7 +94,8 @@ describe('<RecipeList />', () => {
       instance.updateRecipe(1, newRecipe);
 
       expect(wrapper).to.have.state('recipes').deep.equal(newState.recipes);
-      expect(hideModalSpy).to.have.been.calledOnce;
+      expect(showModalSpy).to.have.been.calledOnce;
+      expect(showModalSpy).to.have.been.calledWith(1,'read');
     });
 
     it('should have method deleteRecipe() that updates recipes state', () => {

@@ -8,12 +8,13 @@ import UpdateModeModal from 'components/RecipeModal/UpdateModeModal';
 import DeleteModeModal from 'components/RecipeModal/DeleteModeModal';
 
 describe('<RecipeModal />', () => {
-  let props, wrapper;
+  let props, wrapper, testRecipe;
 
-  const buildWrapper = (isHidden, recipe, mode) => {
+  const buildWrapper = (isHidden, recipe, recipeId, mode) => {
     props = {
       isHidden,
       recipe,
+      recipeId,
       mode,
       onCreate: spy(),
       onUpdate: spy(),
@@ -26,7 +27,7 @@ describe('<RecipeModal />', () => {
   }
 
   beforeEach(() => {
-    buildWrapper(false, null, 'create');
+    buildWrapper(false, null, null, 'create');
   })
 
   it('should be a Bootstrap Modal with required attributes', () => {
@@ -38,7 +39,7 @@ describe('<RecipeModal />', () => {
 
   context('Init Mode', () => {
     beforeEach(() => {
-      buildWrapper(true, null, '');
+      buildWrapper(true, null, null, '');
     });
 
     it('should render blank Modal', () => {
@@ -51,7 +52,7 @@ describe('<RecipeModal />', () => {
 
   context('Create Mode', () => {
     beforeEach(() => {
-      buildWrapper(false, null, 'create');
+      buildWrapper(false, null, null, 'create');
     });
 
     it('should ONLY contain <CreateModeModal /> with required props', () => {
@@ -67,7 +68,9 @@ describe('<RecipeModal />', () => {
 
   context('Read Mode', () => {
     beforeEach(() => {
-      buildWrapper(false, null, 'read');
+      testRecipe = { test: 'test '};
+
+      buildWrapper(false, testRecipe, 2, 'read');
     });
 
     it('should ONLY contain <ReadModeModal /> with required props', () => {
@@ -75,13 +78,20 @@ describe('<RecipeModal />', () => {
       expect(wrapper).to.have.exactly(1).descendants(ReadModeModal);
       expect(wrapper).to.not.have.descendants(UpdateModeModal);
       expect(wrapper).to.not.have.descendants(DeleteModeModal);
+
+      expect(wrapper.find(ReadModeModal)).to.have.prop('recipeId').equal(props.recipeId);
+      expect(wrapper.find(ReadModeModal)).to.have.prop('recipe').equal(props.recipe);
+      expect(wrapper.find(ReadModeModal)).to.have.prop('onHide').equal(props.onHide);
+      expect(wrapper.find(ReadModeModal)).to.have.prop('switchModal').equal(props.switchModal);
     });
 
   });
 
   context('Update Mode', () => {
     beforeEach(() => {
-      buildWrapper(false, null, 'update');
+      testRecipe = { test: 'test '};
+
+      buildWrapper(false, testRecipe, 2, 'update');
     });
 
     it('should ONLY contain <UpdateModeModal />', () => {
@@ -94,7 +104,9 @@ describe('<RecipeModal />', () => {
 
   context('Delete Mode', () => {
     beforeEach(() => {
-      buildWrapper(false, null, 'delete');
+      testRecipe = { test: 'test '};
+
+      buildWrapper(false, testRecipe, 2, 'delete');
     });
 
     it('should ONLY contain <DeleteModeModal />', () => {

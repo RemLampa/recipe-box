@@ -37,7 +37,8 @@ RecipeModal.propTypes = {
   onCreate: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onHide: PropTypes.func.isRequired
+  onHide: PropTypes.func.isRequired,
+  switchModal: PropTypes.func.isRequired
 }
 
 export default RecipeModal;

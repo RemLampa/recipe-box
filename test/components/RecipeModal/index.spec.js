@@ -18,7 +18,8 @@ describe('<RecipeModal />', () => {
       onCreate: spy(),
       onUpdate: spy(),
       onDelete: spy(),
-      onHide: spy()
+      onHide: spy(),
+      switchModal: spy()
     };
 
     wrapper = shallow(<RecipeModal {...props} />);

@@ -188,6 +188,7 @@ describe('<RecipeList />', () => {
     expect(modalSubject).to.have.prop('onUpdate').equal(instance.updateRecipe);
     expect(modalSubject).to.have.prop('onDelete').equal(instance.deleteRecipe);
     expect(modalSubject).to.have.prop('onHide').equal(instance.hideModal);
+    expect(modalSubject).to.have.prop('switchModal').equal(instance.showModal);
   });
 
   it('should contain a ul', () => {

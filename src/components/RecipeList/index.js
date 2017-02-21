@@ -98,6 +98,7 @@ export default class RecipeList extends Component {
           onUpdate={this.updateRecipe}
           onDelete={this.deleteRecipe}
           onHide={this.hideModal}
+          switchModal={this.showModal}
         />
         <ul>
           {

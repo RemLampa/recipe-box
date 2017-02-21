@@ -31,6 +31,7 @@ const RecipeModal = props => (
 
 RecipeModal.propTypes = {
   isHidden: PropTypes.bool.isRequired,
+  recipeId: PropTypes.number,
   recipe: PropTypes.object,
   mode: PropTypes.string.isRequired,
   onCreate: PropTypes.func.isRequired,

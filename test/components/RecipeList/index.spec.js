@@ -18,6 +18,7 @@ describe('<RecipeList />', () => {
       recipeModal: {
         isHidden: true,
         selectedRecipe: null,
+        selectedId: null,
         mode: ''
       }
     };
@@ -114,6 +115,7 @@ describe('<RecipeList />', () => {
       expect(wrapper).to.have.state('recipeModal').deep.equal({
         isHidden: false,
         selectedRecipe: null,
+        selectedId: null,
         mode: 'create'
       });
 
@@ -125,6 +127,7 @@ describe('<RecipeList />', () => {
         expect(wrapper).to.have.state('recipeModal').deep.equal({
           isHidden: false,
           selectedRecipe: newState.recipes[id],
+          selectedId: id,
           mode: 'read'
         });
       });
@@ -137,6 +140,7 @@ describe('<RecipeList />', () => {
         expect(wrapper).to.have.state('recipeModal').deep.equal({
           isHidden: false,
           selectedRecipe: newState.recipes[id],
+          selectedId: id,
           mode: 'update'
         });
       });
@@ -149,6 +153,7 @@ describe('<RecipeList />', () => {
         expect(wrapper).to.have.state('recipeModal').deep.equal({
           isHidden: false,
           selectedRecipe: newState.recipes[id],
+          selectedId: id,
           mode: 'delete'
         });
       });
@@ -158,6 +163,7 @@ describe('<RecipeList />', () => {
       const recipeModal = {
         isHidden: false,
         selectedRecipe: newState.recipes[1],
+        selectedId: 1,
         mode: 'read'
       };
 
@@ -174,13 +180,14 @@ describe('<RecipeList />', () => {
 
     const modalSubject = wrapper.find(RecipeModal).first();
 
-    expect(modalSubject).to.have.prop('isHidden', initialState.recipeModal.isHidden);
-    expect(modalSubject).to.have.prop('recipe', initialState.recipeModal.selectedRecipe);
-    expect(modalSubject).to.have.prop('mode', initialState.recipeModal.mode);
-    expect(modalSubject).to.have.prop('onCreate', instance.createRecipe);
-    expect(modalSubject).to.have.prop('onUpdate', instance.updateRecipe);
-    expect(modalSubject).to.have.prop('onDelete', instance.deleteRecipe);
-    expect(modalSubject).to.have.prop('onHide', instance.hideModal);
+    expect(modalSubject).to.have.prop('isHidden').equal(initialState.recipeModal.isHidden);
+    expect(modalSubject).to.have.prop('recipe').equal(initialState.recipeModal.selectedRecipe);
+    expect(modalSubject).to.have.prop('recipeId').equal(initialState.recipeModal.selectedId);
+    expect(modalSubject).to.have.prop('mode').equal(initialState.recipeModal.mode);
+    expect(modalSubject).to.have.prop('onCreate').equal(instance.createRecipe);
+    expect(modalSubject).to.have.prop('onUpdate').equal(instance.updateRecipe);
+    expect(modalSubject).to.have.prop('onDelete').equal(instance.deleteRecipe);
+    expect(modalSubject).to.have.prop('onHide').equal(instance.hideModal);
   });
 
   it('should contain a ul', () => {

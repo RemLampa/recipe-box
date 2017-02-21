@@ -20,6 +20,7 @@ export default class RecipeList extends Component {
       recipeModal: {
         isHidden: true,
         selectedRecipe: null,
+        selectedId: null,
         mode: ''
       }
     };
@@ -65,6 +66,7 @@ export default class RecipeList extends Component {
       selectedRecipe: recipeId || recipeId === 0 ?
         this.state.recipes[recipeId] :
         null,
+      selectedId: recipeId,
       mode: mode
     };
 
@@ -75,6 +77,7 @@ export default class RecipeList extends Component {
     const recipeModal = {
       isHidden: true,
       selectedRecipe: null,
+      selectedId: null,
       mode: ''
     };
 
@@ -89,6 +92,7 @@ export default class RecipeList extends Component {
         <RecipeModal
           isHidden={recipeModal.isHidden}
           recipe={recipeModal.selectedRecipe}
+          recipeId={recipeModal.selectedId}
           mode={recipeModal.mode}
           onCreate={this.createRecipe}
           onUpdate={this.updateRecipe}

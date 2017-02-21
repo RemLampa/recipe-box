@@ -63,14 +63,14 @@ class CreateModeModal extends Component {
         <Modal.Footer>
           <button
             type='button'
-            className='btn btn-lg btn-primary'
+            className='btn btn-lg btn-success'
             onClick={this.onSubmitHandler}
             >
             Add Recipe
           </button>
           <button
             type='button'
-            className='btn btn-lg btn-danger'
+            className='btn btn-lg btn-warning'
             onClick={this.props.onCancel}
             >
             Cancel

@@ -3,7 +3,7 @@ import CreateModeModal from 'components/RecipeModal/CreateModeModal';
 import { Modal } from 'react-bootstrap';
 
 describe('<CreateModeModal />', () => {
-  let wrapper, mountedWrapper, instance, mountedInstance, props, state;
+  let wrapper, instance, props, state;
   beforeEach(() => {
     props = {
       onCreate: spy(),
@@ -18,7 +18,6 @@ describe('<CreateModeModal />', () => {
 
     wrapper = shallow(<CreateModeModal {...props} />);
     instance = wrapper.instance();
-    mountedWrapper = mount(<CreateModeModal {...props} />);
 
     wrapper.setState(state);
   });
@@ -56,6 +55,8 @@ describe('<CreateModeModal />', () => {
 
   describe('<Modal.Header />', () => {
     it('should contain a proper Modal Header', () => {
+      const mountedWrapper = mount(<CreateModeModal {...props} />);
+      
       expect(wrapper).to.have.exactly(1).descendants(Modal.Header);
       expect(wrapper.find(Modal.Header)).to.have.exactly(1).descendants(Modal.Title);
       expect(mountedWrapper.find(Modal.Title)).to.have.text('Create New Recipe');

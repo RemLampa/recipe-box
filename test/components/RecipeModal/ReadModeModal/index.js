@@ -3,7 +3,7 @@ import ReadModeModal from 'components/RecipeModal/ReadModeModal';
 import { Modal } from 'react-bootstrap';
 
 describe('<ReadModeModal />', () => {
-  let wrapper, mountedWrapper, props;
+  let wrapper, props;
 
   beforeEach(() => {
     props = {
@@ -18,7 +18,6 @@ describe('<ReadModeModal />', () => {
     };
 
     wrapper = shallow(<ReadModeModal {...props} />);
-    mountedWrapper = mount(<ReadModeModal {...props} />);
   });
 
   it('should be a div', () => {
@@ -27,6 +26,8 @@ describe('<ReadModeModal />', () => {
 
   describe('<Modal.Header />', () => {
     it('should contain proper Modal Header with recipe name', () => {
+      const mountedWrapper = mount(<ReadModeModal {...props} />);
+      
       expect(wrapper).to.have.exactly(1).descendants(Modal.Header);
       expect(wrapper).to.have.exactly(1).descendants(Modal.Title);
       expect(mountedWrapper.find(Modal.Title)).to.have.text(props.recipe.name);

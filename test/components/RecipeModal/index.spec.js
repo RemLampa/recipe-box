@@ -99,6 +99,11 @@ describe('<RecipeModal />', () => {
       expect(wrapper).to.not.have.descendants(ReadModeModal);
       expect(wrapper).to.have.exactly(1).descendants(UpdateModeModal);
       expect(wrapper).to.not.have.descendants(DeleteModeModal);
+
+      expect(wrapper.find(UpdateModeModal)).to.have.prop('recipeId').equal(props.recipeId);
+      expect(wrapper.find(UpdateModeModal)).to.have.prop('recipe').equal(props.recipe);
+      expect(wrapper.find(UpdateModeModal)).to.have.prop('onSave').equal(props.onUpdate);
+      expect(wrapper.find(UpdateModeModal)).to.have.prop('switchModal').equal(props.switchModal);
     });
   });
 
@@ -114,6 +119,11 @@ describe('<RecipeModal />', () => {
       expect(wrapper).to.not.have.descendants(ReadModeModal);
       expect(wrapper).to.not.have.descendants(UpdateModeModal);
       expect(wrapper).to.have.exactly(1).descendants(DeleteModeModal);
+
+      expect(wrapper.find(DeleteModeModal)).to.have.prop('recipeId').equal(props.recipeId);
+      expect(wrapper.find(DeleteModeModal)).to.have.prop('recipe').equal(props.recipe);
+      expect(wrapper.find(DeleteModeModal)).to.have.prop('onDelete').equal(props.onDelete);
+      expect(wrapper.find(DeleteModeModal)).to.have.prop('onCancel').equal(props.onHide);
     });
   });
 });

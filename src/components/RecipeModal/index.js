@@ -30,7 +30,12 @@ const RecipeModal = props => (
       onSave={props.onUpdate}
       switchModal={props.switchModal}
       /> }
-    { props.mode === 'delete' && <DeleteModeModal /> }
+    { props.mode === 'delete' && <DeleteModeModal
+      recipeId={props.recipeId}
+      recipe={props.recipe}
+      onDelete={props.onDelete}
+      onCancel={props.onHide}
+      /> }
     { ['create', 'read', 'update', 'delete'].indexOf(props.mode) < 0 &&
       <Modal.Body>
         <noscript />

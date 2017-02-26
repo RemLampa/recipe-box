@@ -33,7 +33,11 @@ const ReadModeModal = props => (
 
 ReadModeModal.PropTypes = {
   recipeId: PropTypes.number.isRequired,
-  recipe: PropTypes.object.isRequired,
+  recipe: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    ingredients: PropTypes.string.isRequired
+  }),
   onHide: PropTypes.func.isRequired,
   switchModal: PropTypes.func.isRequired
 }

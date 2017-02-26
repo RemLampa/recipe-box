@@ -76,3 +76,13 @@ export default class UpdateModeModal extends Component {
     );
   }
 };
+
+UpdateModeModal.propTypes = {
+  recipe: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    ingredients: PropTypes.string.isRequired
+  }),
+  onSave: PropTypes.func.isRequired,
+  switchModal: PropTypes.func.isRequired
+};

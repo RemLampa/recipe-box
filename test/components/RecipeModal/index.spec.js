@@ -94,7 +94,7 @@ describe('<RecipeModal />', () => {
       buildWrapper(false, testRecipe, 2, 'update');
     });
 
-    it('should ONLY contain <UpdateModeModal />', () => {
+    it('should ONLY contain <UpdateModeModal /> with required props', () => {
       expect(wrapper).to.not.have.descendants(CreateModeModal);
       expect(wrapper).to.not.have.descendants(ReadModeModal);
       expect(wrapper).to.have.exactly(1).descendants(UpdateModeModal);
@@ -114,7 +114,7 @@ describe('<RecipeModal />', () => {
       buildWrapper(false, testRecipe, 2, 'delete');
     });
 
-    it('should ONLY contain <DeleteModeModal />', () => {
+    it('should ONLY contain <DeleteModeModal /> with required props', () => {
       expect(wrapper).to.not.have.descendants(CreateModeModal);
       expect(wrapper).to.not.have.descendants(ReadModeModal);
       expect(wrapper).to.not.have.descendants(UpdateModeModal);

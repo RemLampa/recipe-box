@@ -123,7 +123,7 @@ describe('<RecipeModal />', () => {
       expect(wrapper.find(DeleteModeModal)).to.have.prop('recipeId').equal(props.recipeId);
       expect(wrapper.find(DeleteModeModal)).to.have.prop('recipe').equal(props.recipe);
       expect(wrapper.find(DeleteModeModal)).to.have.prop('onDelete').equal(props.onDelete);
-      expect(wrapper.find(DeleteModeModal)).to.have.prop('onCancel').equal(props.onHide);
+      expect(wrapper.find(DeleteModeModal)).to.have.prop('onCancel').equal(props.switchModal);
     });
   });
 });

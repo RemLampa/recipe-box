@@ -8,7 +8,13 @@ import UpdateModeModal from 'components/RecipeModal/UpdateModeModal';
 import DeleteModeModal from 'components/RecipeModal/DeleteModeModal';
 
 describe('<RecipeModal />', () => {
-  let props, wrapper, testRecipe;
+  let props, wrapper;
+
+  const testRecipe = {
+    name: 'Test Recipe',
+    description: 'This is a test recipe',
+    ingredients: 'lettuce,cabbage,tomatoes'
+  };
 
   const buildWrapper = (isHidden, recipe, recipeId, mode) => {
     props = {
@@ -68,8 +74,6 @@ describe('<RecipeModal />', () => {
 
   context('Read Mode', () => {
     beforeEach(() => {
-      testRecipe = { test: 'test '};
-
       buildWrapper(false, testRecipe, 2, 'read');
     });
 
@@ -89,8 +93,6 @@ describe('<RecipeModal />', () => {
 
   context('Update Mode', () => {
     beforeEach(() => {
-      testRecipe = { test: 'test '};
-
       buildWrapper(false, testRecipe, 2, 'update');
     });
 
@@ -109,8 +111,6 @@ describe('<RecipeModal />', () => {
 
   context('Delete Mode', () => {
     beforeEach(() => {
-      testRecipe = { test: 'test '};
-
       buildWrapper(false, testRecipe, 2, 'delete');
     });
 

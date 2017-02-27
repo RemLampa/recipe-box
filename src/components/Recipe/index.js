@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
 
 const Recipe = ({recipeName, id, onClick}) => (
-  <li onClick={ () => onClick(id,'read') }>
+  <button
+    className='list-group-item'
+    onClick={ () => onClick(id,'read') }
+    >
     {recipeName}
-  </li>
+  </button>
 );
 
 Recipe.propTypes = {

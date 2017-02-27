@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 
 import { Modal } from 'react-bootstrap';
 
+import style from './style.scss';
+
 const DeleteModeModal = props => (
-  <div>
+  <div id='delete-mode-modal'>
     <Modal.Header>
       <Modal.Title>Delete Recipe</Modal.Title>
     </Modal.Header>
@@ -11,29 +13,38 @@ const DeleteModeModal = props => (
       <p className='bg-danger'>
         Are you sure you want to delete this recipe?
       </p>
-      <h3>{props.recipe.name}</h3>
-      <div id='description'>
-        {props.recipe.description}
+      <div className='panel panel-warning'>
+        <div className='panel-heading'>
+          <h3>{props.recipe.name}</h3>
+        </div>
+        <div id='description' className='panel-body'>
+          {props.recipe.description}
+        </div>
+        <ul className='list-group'>
+          {
+            props.recipe.ingredients.split(',').map((ingredient, key) => (
+              <li
+                className='list-group-item'
+                key={key}
+                >
+                {ingredient}
+              </li>
+            ))
+          }
+        </ul>
       </div>
-      <ul>
-        {
-          props.recipe.ingredients.split(',').map((ingredient, key) => (
-            <li key={key}>{ingredient}</li>
-          ))
-        }
-      </ul>
     </Modal.Body>
     <Modal.Footer>
       <button
         type='button'
-        className='btn btn-lg btn-danger'
+        className='btn btn-md btn-danger'
         onClick={() => props.onDelete(props.recipeId)}
         >
         Delete
       </button>
       <button
         type='button'
-        className='btn btn-lg btn-warning'
+        className='btn btn-md btn-default'
         onClick={() => props.onCancel(props.recipeId, 'read')}
         >
         Cancel

@@ -17,6 +17,10 @@ class CreateModeModal extends Component {
   onSubmitHandler() {
     const recipe = this.state;
 
+    if (recipe.name === '' || recipe.description === '' || recipe.ingredients === '') {
+      return;
+    }
+
     this.props.onCreate(recipe);
   }
 
@@ -30,23 +34,38 @@ class CreateModeModal extends Component {
   renderForm() {
     return (
       <form>
-        <input
-          type='text'
-          name='name'
-          value={this.state.name}
-          onChange={this.onChangeHandler}
-          />
-        <input
-          type='text'
-          name='description'
-          value={this.state.description}
-          onChange={this.onChangeHandler}
-          />
-        <textarea
-          name='ingredients'
-          value={this.state.ingredients}
-          onChange={this.onChangeHandler}
-          />
+        <div className='form-group'>
+          <label htmlFor='name'>Name</label>
+          <input
+            type='text'
+            name='name'
+            id='name'
+            className='form-control'
+            value={this.state.name}
+            onChange={this.onChangeHandler}
+            />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='description'>Description</label>
+          <input
+            type='text'
+            name='description'
+            id='description'
+            className='form-control'
+            value={this.state.description}
+            onChange={this.onChangeHandler}
+            />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='ingredients'>Ingredients (separate by comma)</label>
+          <textarea
+            name='ingredients'
+            id='ingredients'
+            className='form-control'
+            value={this.state.ingredients}
+            onChange={this.onChangeHandler}
+            />
+        </div>
       </form>
     );
   }
@@ -63,14 +82,14 @@ class CreateModeModal extends Component {
         <Modal.Footer>
           <button
             type='button'
-            className='btn btn-lg btn-success'
+            className='btn btn-md btn-primary'
             onClick={this.onSubmitHandler}
             >
             Add Recipe
           </button>
           <button
             type='button'
-            className='btn btn-lg btn-warning'
+            className='btn btn-md btn-warning'
             onClick={this.props.onCancel}
             >
             Cancel

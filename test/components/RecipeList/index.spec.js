@@ -195,14 +195,14 @@ describe('<RecipeList />', () => {
     expect(modalSubject).to.have.prop('switchModal').equal(instance.showModal);
   });
 
-  it('should contain a ul', () => {
-    expect(wrapper).to.have.exactly(1).descendants('ul');
+  it('should contain a list-group', () => {
+    expect(wrapper).to.have.exactly(1).descendants('.list-group');
   });
 
   it('should render a <Recipe /> for each recipe', () => {
     instance.setState({ recipes: [...newState.recipes] });
 
-    expect(wrapper.find('ul')).to.have.exactly(3).descendants(Recipe);
+    expect(wrapper.find('.list-group')).to.have.exactly(3).descendants(Recipe);
 
     const recipeWrapper = wrapper.find(Recipe);
 

@@ -39,34 +39,55 @@ export default class UpdateModeModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <form>
-            <input
-              type='text'
-              name='name'
-              value={this.state.name}
-              onChange={this.onChangeHandler}
-              />
-            <input
-              type='text'
-              name='description'
-              value={this.state.description}
-              onChange={this.onChangeHandler}
-              />
-            <textarea
-              name='ingredients'
-              value={this.state.ingredients}
-              onChange={this.onChangeHandler}
-              />
+            <div className='form-group'>
+              <label htmlFor='name'>
+                Name
+              </label>
+              <input
+                type='text'
+                name='name'
+                id='name'
+                className='form-control'
+                value={this.state.name}
+                onChange={this.onChangeHandler}
+                />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='description'>
+                Description
+              </label>
+              <input
+                type='text'
+                name='description'
+                id='description'
+                className='form-control'
+                value={this.state.description}
+                onChange={this.onChangeHandler}
+                />
+            </div>
+            <div className='form-group'>
+              <label htmlFor='ingredients'>
+                Ingredients (separate by comma)
+              </label>
+              <textarea
+                name='ingredients'
+                id='ingredients'
+                className='form-control'
+                value={this.state.ingredients}
+                onChange={this.onChangeHandler}
+                />
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
           <button
-            className='btn btn-lg btn-success'
+            className='btn btn-md btn-primary'
             onClick={this.onSubmitHandler}
             >
             Save
           </button>
           <button
-            className='btn btn-lg btn-warning'
+            className='btn btn-md btn-warning'
             onClick={this.onCancelHandler}
             >
             Cancel

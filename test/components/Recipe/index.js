@@ -13,12 +13,12 @@ describe('<Recipe />', () => {
     wrapper = shallow(<Recipe {...props} />);
   });
 
-  it('should be a li', () => {
-    expect(wrapper).to.have.type('li');
+  it('should be a button', () => {
+    expect(wrapper).to.have.type('button');
   });
 
   it('should display recipe name', () => {
-    expect(wrapper.find('li')).to.have.text(props.recipeName);
+    expect(wrapper.find('button')).to.have.text(props.recipeName);
   });
 
   it('should call props.onClick when clicked', () => {

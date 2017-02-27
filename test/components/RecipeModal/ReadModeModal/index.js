@@ -27,7 +27,7 @@ describe('<ReadModeModal />', () => {
   describe('<Modal.Header />', () => {
     it('should contain proper Modal Header with recipe name', () => {
       const mountedWrapper = mount(<ReadModeModal {...props} />);
-      
+
       expect(wrapper).to.have.exactly(1).descendants(Modal.Header);
       expect(wrapper).to.have.exactly(1).descendants(Modal.Title);
       expect(mountedWrapper.find(Modal.Title)).to.have.text(props.recipe.name);
@@ -64,7 +64,7 @@ describe('<ReadModeModal />', () => {
     it('should contain Edit, Delete, and Close buttons', () => {
       expect(wrapper.find(Modal.Footer)).to.have.exactly(3).descendants('button');
 
-      expect(wrapper.find('button').at(0)).to.have.text('Edit');
+      expect(wrapper.find('button').at(0)).to.have.text('Edit Recipe');
 
       expect(wrapper.find('button').at(1)).to.have.text('Delete');
 

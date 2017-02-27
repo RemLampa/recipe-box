@@ -119,23 +119,26 @@ export default class RecipeList extends Component {
           onHide={this.hideModal}
           switchModal={this.showModal}
         />
-        <ul>
-          {
-            this.state.recipes && this.state.recipes.map((recipe,index) => <Recipe
-              recipeName={recipe.name}
-              key={index}
-              id={index}
-              onClick={this.showModal}
-            />)
-          }
-        </ul>
         <button
           type='button'
           className='btn btn-primary btn-lg btn-block'
           onClick={() => this.showModal(null,'create')}
-        >
+          >
           Create Recipe
         </button>
+        <div className='panel panel-info'>
+          <div className='panel-heading'><h1>Recipes</h1></div>
+          <div className='list-group'>
+            {
+              this.state.recipes && this.state.recipes.map((recipe,index) => <Recipe
+                recipeName={recipe.name}
+                key={index}
+                id={index}
+                onClick={this.showModal}
+              />)
+            }
+          </div>
+        </div>
       </div>
     );
   }

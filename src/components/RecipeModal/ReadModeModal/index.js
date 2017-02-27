@@ -8,25 +8,49 @@ const ReadModeModal = props => (
       <Modal.Title>{props.recipe.name}</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      <div id='description'>
+      <div id='description' className='well well-lg'>
         {props.recipe.description}
       </div>
-      <ul>
-        {
-          props.recipe.ingredients.split(',').map((ingredient,index) => (
-            <li key={index}>{ingredient}</li>)
-          )
-        }
-      </ul>
+      <div className='panel panel-info'>
+        <div className='panel-heading'>
+          Ingredients
+        </div>
+        <ul className='list-group'>
+          {
+            props.recipe.ingredients.split(',').map((ingredient,index) => (
+              <li
+                className='list-group-item'
+                key={index}
+                >
+                {ingredient}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
     </Modal.Body>
     <Modal.Footer>
-      <button onClick={() => props.switchModal(props.recipeId,'update')}>
-        Edit
+      <button
+        type='button'
+        className='btn btn-md btn-primary'
+        onClick={() => props.switchModal(props.recipeId,'update')}
+        >
+        Edit Recipe
       </button>
-      <button onClick={() => props.switchModal(props.recipeId,'delete')}>
+      <button
+        type='button'
+        className='btn btn-md btn-danger'
+        onClick={() => props.switchModal(props.recipeId,'delete')}
+        >
         Delete
       </button>
-      <button onClick={props.onHide}>Close</button>
+      <button
+        type='button'
+        className='btn btn-md btn-default'
+        onClick={props.onHide}
+        >
+        Close
+      </button>
     </Modal.Footer>
   </div>
 );

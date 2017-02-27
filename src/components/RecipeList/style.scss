@@ -1,4 +1,16 @@
 #recipe-list {
   max-width: 760px;
   margin: 2% auto 2%;
+
+  > .btn {
+    font-size: 1.3em;
+  }
+
+  > .panel {
+    margin-top: 5%;
+
+    > .list-group {
+      font-size: 1.5em;
+    }
+  }
 }

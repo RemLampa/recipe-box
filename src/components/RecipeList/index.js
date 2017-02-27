@@ -17,7 +17,7 @@ export default class RecipeList extends Component {
       }],
       recipeModal: {
         isHidden: true,
-        selectedRecipe:null,
+        selectedRecipe: null,
         selectedId: null,
         mode: ''
       }

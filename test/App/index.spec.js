@@ -1,6 +1,7 @@
 import App from 'App';
 
 import RecipeList from 'components/RecipeList';
+import NavBar from 'components/NavBar';
 
 describe('<App />', () => {
   let wrapper;
@@ -16,4 +17,8 @@ describe('<App />', () => {
   it('should render <RecipeList />', () => {
     expect(wrapper).to.contain(<RecipeList />);
   });
+
+  it('should render <NavBar />', () => {
+    expect(wrapper).to.have.exactly(1).descendants(NavBar);
+  })
 });

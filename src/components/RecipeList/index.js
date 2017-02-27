@@ -10,21 +10,20 @@ export default class RecipeList extends Component {
     super(props);
 
     this.state = {
-      recipes: [
-        {
-          name: 'Sample Recipe',
-          description: 'This is a sample recipe',
-          ingredients: 'tomato,salt,water'
-        }
-      ],
+      recipes: [{
+        name: 'Sample Recipe',
+        description: 'This is a sample recipe',
+        ingredients: 'tomato,salt,water'
+      }],
       recipeModal: {
         isHidden: true,
-        selectedRecipe: null,
+        selectedRecipe:null,
         selectedId: null,
         mode: ''
       }
     };
 
+    this.saveOnLocal = this.saveOnLocal.bind(this);
     this.createRecipe = this.createRecipe.bind(this);
     this.updateRecipe = this.updateRecipe.bind(this);
     this.deleteRecipe = this.deleteRecipe.bind(this);
@@ -32,10 +31,27 @@ export default class RecipeList extends Component {
     this.hideModal = this.hideModal.bind(this);
   }
 
+  componentDidMount() {
+    if (typeof(Storage) !== 'undefined') {
+      const recipes = JSON.parse(localStorage.getItem('recipeList'));
+
+      if (recipes !== null) {
+        this.setState({ recipes });
+      }
+    }
+  }
+
+  saveOnLocal() {
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('recipeList', JSON.stringify(this.state.recipes));
+    }
+  }
+
   createRecipe(recipe) {
     const recipes = [ ...this.state.recipes, recipe ];
 
     this.setState({ recipes }, () => {
+      this.saveOnLocal();
       this.showModal(recipes.length - 1, 'read');
     });
   }
@@ -46,6 +62,7 @@ export default class RecipeList extends Component {
     recipes[recipeId] = recipe;
 
     this.setState({ recipes }, () => {
+      this.saveOnLocal();
       this.showModal(recipeId, 'read');
     });
   }
@@ -55,7 +72,9 @@ export default class RecipeList extends Component {
 
     recipes.splice(recipeId, 1);
 
-    this.setState({ recipes });
+    this.setState({ recipes }, () => {
+      this.saveOnLocal();
+    });
 
     this.hideModal();
   }
@@ -102,7 +121,7 @@ export default class RecipeList extends Component {
         />
         <ul>
           {
-            this.state.recipes.map((recipe,index) => <Recipe
+            this.state.recipes && this.state.recipes.map((recipe,index) => <Recipe
               recipeName={recipe.name}
               key={index}
               id={index}
